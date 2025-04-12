@@ -450,9 +450,9 @@ HRESULT CLoader::Loading_For_Level_GamePlay()
 		return E_FAIL;
 
 
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_SM_ground_Road_Middle_250x250cm_1_a"),
-		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/SM_ground_Road_Middle_250x250cm_1_a/SM_ground_Road_Middle_250x250cm_1_a.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
-		return E_FAIL;
+	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_SM_ground_Road_Middle_250x250cm_1_a"),
+	//	CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/SM_ground_Road_Middle_250x250cm_1_a/SM_ground_Road_Middle_250x250cm_1_a.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
+	//	return E_FAIL;
 
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_T_P_BossRoomVines01"),
@@ -535,7 +535,7 @@ HRESULT CLoader::Loading_For_Level_GamePlay()
 		return E_FAIL;
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_Brick_Floor"),
-		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/Brick_Floor/brickFloor.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
+		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/Brick_Floor/brickFloor.fbx", CModel::MODEL_NONANIM, PreTransformMatrix, true))))
 		return E_FAIL;
 
 	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_P_Archive_Chair01"),
@@ -1049,6 +1049,10 @@ HRESULT CLoader::Loading_For_Level_GamePlay()
 		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/Deceased/P_Deceased06.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
 		return E_FAIL;
 
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_DryTreeT1_branches_1_SM"),
+		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/Trees/DryTreeT1_branches_1_SM.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
+		return E_FAIL;
+
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_SM_DeadTree_01a"),
 		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/Trees/SM_DeadTree_01a.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
 		return E_FAIL;
@@ -1404,6 +1408,15 @@ HRESULT CLoader::Loading_For_Level_GamePlay()
 	//	return E_FAIL;
 
 
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_SM_Door_Left"),
+		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/SM_Fences/SM_fence_07.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
+		return E_FAIL;
+
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_SM_Door_Right"),
+		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/Objects/SM_Fences/SM_fence_07.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
+		return E_FAIL;
+
 
 	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_GameObject_Object_NonMoveObject"),
 		CNonMoveObject::Create(m_pDevice, m_pContext))))
@@ -1435,6 +1448,9 @@ HRESULT CLoader::Loading_For_Level_GamePlay()
 		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/GroundObjects/House_0/House_0.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
 		return E_FAIL;
 
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House3"),
+		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/GroundObjects/House_3/House_3.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
+		return E_FAIL;
 	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House1"),
 	//	CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/GroundObjects/House_1/House_1.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
 	//	return E_FAIL;
@@ -1442,10 +1458,6 @@ HRESULT CLoader::Loading_For_Level_GamePlay()
 	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House2"),
 	//	CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/GroundObjects/House_2/House_2.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
 	//	return E_FAIL;
-
-	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House3"),
-		CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/GroundObjects/House_3/House_3.fbx", CModel::MODEL_NONANIM, PreTransformMatrix))))
-		return E_FAIL;
 
 	//if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Model_House5"),
 	//	CModel::Create(m_pDevice, m_pContext, "../Bin/Resources/Models/GroundObjects/House_5/House_5.fbx", CModel::MODEL_NONANIM, PreTransformMatrix, true))))
@@ -1529,6 +1541,12 @@ HRESULT CLoader::Loading_For_Level_GamePlay()
 		return E_FAIL;
 
 #pragma endregion 
+
+	if (FAILED(m_pGameInstance->Add_Prototype(LEVEL_GAMEPLAY, TEXT("Prototype_Component_Json_Extractor"),
+		CJsonExtractor::Create(m_pDevice, m_pContext))))
+		return E_FAIL;
+	//Prototype_Component_Json_Extractor
+
 	/* 로딩이 완료되었습ㄴ미다 */
 	lstrcpyW(m_szLoadingText, TEXT("로딩끝."));
 	m_isFinished = true;

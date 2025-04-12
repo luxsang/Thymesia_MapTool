@@ -63,6 +63,9 @@ _bool CPicking::Compute_PickPos(_float3* _pOut)
 
 	_uint		iPixelIndex = (_uint)(ptMouse.y * m_fViewportWidth + ptMouse.x);
 
+	if (iPixelIndex > m_fViewportHeight * m_fViewportWidth)
+		return false;
+
 	_float4		vDepthDesc = static_cast<_float4*>(SubResource.pData)[iPixelIndex];
 
 	m_pContext->Unmap(m_pTexture2D, 0);

@@ -86,6 +86,9 @@ public:
     void            Set_FrustumSphere(_bool _bSphere) {
         m_bFrustumSphere = _bSphere;
     }
+    void         Set_PassIndex(_uint iPass) {
+        m_iPassIndex = iPass;
+    }
     //virtual void Update_InstanceBuffer();
 public:
     _uint           Get_InstanceCount() { return  m_iNumInstance; }

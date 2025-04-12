@@ -30,7 +30,7 @@ class CLevel_GamePlay final : public CLevel
 {
 public:
     enum IMGUI_TEXTURE_TYPE { IMG_ANIM_MODEL, IMG_NONANIM_MODEL, IMG_GROUND_MODEL, IMG_TRIGGER_OBJECT, IMG_SPECIFIC_OBJECT, IMG_END };
-    enum MENU_TYPE { MT_PICKING_ANIMMODEL, MT_PICKING_NONANIMMODEL, MT_NAVI, MT_GROUND, MT_HEIGHT, MT_TERRAIN_MASK, MT_WATER_MASK, MT_TRIGGER, MT_SPECIFIC,  MT_END };
+    enum MENU_TYPE { MT_PICKING_ANIMMODEL, MT_PICKING_NONANIMMODEL, MT_NAVI, MT_GROUND, MT_HEIGHT, MT_TERRAIN_MASK, MT_WATER_MASK, MT_TRIGGER, MT_SPECIFIC, MT_ADDMONSTER, MT_END };
     enum NONMOVEOBJECT_TYPE { NONMOVEOBJECT_DEFAULT, NONMOVEOBJECT_BILLBOARD, NONMOVEOBJECT_INTERACTIVE };
 public:
     struct CELL_POINTS
@@ -49,7 +49,7 @@ public:
 
     typedef struct Monster_Index_Info
     {
-        vector<_float4> vMonsterPos;
+        _float4 vMonsterPos;
         _int            iMonsterIndex;
     }MONSTERINDEXINFO;
 
@@ -122,6 +122,7 @@ private:
     void                                Delete_SpecificObjects();
     void                                Update_SpecificObjects();
 
+    HRESULT                             Update_MonsterGroup();
 
     void                                Update_InstanceObjects();
     void                                Update_InstanceMove();
@@ -131,6 +132,7 @@ private:
     HRESULT								Save_Objects();
     HRESULT								Load_Objects();
     HRESULT                             Save_Monster_Index();
+    HRESULT                             Save_Monster_Pos();
     void	                            OpenFileDialoge(const _tchar* _pDefaultFileName, const _tchar* _pFilter, std::wstring& outFileName);
 
     HRESULT                             Save_TriggerObjects();
@@ -205,6 +207,7 @@ private:
     _bool                               m_bTerrainWaterMaskSelected = { false };
     _bool                               m_bTriggerObjectMenuSelected = { false };
     _bool                               m_bSpecificObjectMenuSelected = { false };
+    _bool                               m_bAddMonsterMenuSelected = { false };
 
 
     _bool								m_bIsMeshPickingMode = { false };
@@ -237,6 +240,19 @@ private:
     vector<CEnvironmentObject*>         m_EnvironmentObjects;
     vector<CTempCollider*>              m_vecTempColliderObjects;
     vector<CSpecificObject*>            m_vecSpecificObjects;
+
+
+    vector<string>                        m_StaticObjectsNames;
+    vector<string>                        m_InstanceObjectsNames;
+    map<string, vector<CObject*>>               m_mapStaticObjects;
+    map<string, CEnvironmentObject*>    m_mapInstanceObjects;
+
+
+    _uint                                   m_iSelectedStaticMeshName = { 0 };
+    _uint                                   m_iSelectedInstanceMeshName = { 0 };
+
+    _float                                  m_fFrustumradius = { 1.f };
+    _uint                                   m_iCullingPass = { 0 };
 
 
     _float3                             m_fMeshPickPos = { 0.f, 0.f, 0.f };
@@ -603,11 +619,33 @@ private:
         "tree03_02",
     };
 
-    const char* m_strSpecificNames[3] =
+    const char* m_strSpecificNames[5] =
     {
         "P_Archive_Chair01",
         "NPCLamp",
-        "SM_Woods"
+        "SM_Woods",
+        "SM_Door_Left",
+        "SM_Door_Right",
+    };
+
+    const char* m_strMonsterNames[20] =
+    {
+        "NORMAL_Village_M0", //일반 남자 도끼병
+        "NORMAL_Village_M1", //준일반 남자 도끼방패병
+        "NORMAL_Scythem",    //준일반 남자 낫병
+        "NORMAL_Village_F0", //일반 여자 단도병
+        "NORMAL_Village_F1", //준일반 여자 단도병
+        "ELITE_HarmorV2",   //엘리트 검병
+        "ELITE_Punch_Man",   //엘리트 펀치맨
+        "ELITE_Grace",       //엘리트 그레이스
+        "ELITE_Joker",       //엘리트 조커
+        "ELITE_Reacher",     //엘리트 리처
+        "BOSS_Varg",         //보스 바그
+        "BOSS_Ord",          //보스 오두르
+        "BOSS_Urd",          //보스 우르드
+        "BOSS_Bat",          //보스 박쥐
+        "Bat_Crystal",
+        "Building_Spore",
     };
 
 
@@ -628,9 +666,6 @@ private:
     CTransform* m_pCurrentEnvironmentObjectTransformCom = { nullptr };
 
     CTempCollider* m_pTempCollider = { nullptr };
-
-
-
 
     _float3									m_fCurrentObjectPos = { 0.f, 0.f, 0.f };
     _bool									m_bFrustumSphere = { false };
@@ -667,6 +702,7 @@ private:
     MONSTERINDEXINFO                        m_MonsterInfo = {};
 
     vector<MONSTERINDEXINFO>                m_MonsterInfos;
+    vector<_float4>                         m_MonsterPosInfos;
 
     _int				                    m_iMaskTextureIndex = { 0 };
 
@@ -687,7 +723,7 @@ private:
     _uint* m_pWaterMapPixels = { nullptr };
 
 public:
-    static CLevel_GamePlay* Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
+    static CLevel_GamePlay*                 Create(ID3D11Device* pDevice, ID3D11DeviceContext* pContext);
     virtual void                            Free() override;
 };
 

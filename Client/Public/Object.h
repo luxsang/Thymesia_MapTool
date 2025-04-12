@@ -72,6 +72,9 @@ public:
 	void         Set_FrustumSphere(_bool bSphere) {
 		m_bFrustumSphere = bSphere;
 	}
+	void         Set_CullPass(_uint iPass) {
+		m_iCullPass = iPass;
+	}
 
 protected:
 	//Components

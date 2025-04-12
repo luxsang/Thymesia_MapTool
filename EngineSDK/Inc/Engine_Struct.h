@@ -31,6 +31,14 @@ namespace Engine
 	};
 
 
+	typedef struct MeshInfo_Desc
+	{
+		string		ObjectName = {};
+		_float4		fRotation = { };
+		_float3		fScale = {};
+		_float3		fPosition = {};
+	}MESHINFO_DESC;
+
 	struct MATERIAL_DESC	
 	{
 		XMFLOAT4		vDiffuse;

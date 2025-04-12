@@ -200,6 +200,7 @@ call UpdateLib.bat</Command>
     <ClInclude Include="..\Public\Graphic_Device.h" />
     <ClInclude Include="..\Public\Input_Device.h" />
     <ClInclude Include="..\public\ItemMgr.h" />
+    <ClInclude Include="..\Public\JsonExtractor.h" />
     <ClInclude Include="..\public\Layer.h" />
     <ClInclude Include="..\public\Level.h" />
     <ClInclude Include="..\public\Level_Manager.h" />
@@ -267,6 +268,7 @@ call UpdateLib.bat</Command>
     <ClCompile Include="..\Private\Graphic_Device.cpp" />
     <ClCompile Include="..\Private\Input_Device.cpp" />
     <ClCompile Include="..\private\ItemMgr.cpp" />
+    <ClCompile Include="..\Private\JsonExtractor.cpp" />
     <ClCompile Include="..\private\Layer.cpp" />
     <ClCompile Include="..\private\Level.cpp" />
     <ClCompile Include="..\private\Level_Manager.cpp" />

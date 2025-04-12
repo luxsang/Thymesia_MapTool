@@ -220,6 +220,9 @@
     <Filter Include="01.Utility\21.Picking">
       <UniqueIdentifier>{a32faa78-aefb-47aa-ac98-2f63bfe3e44b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Utility\04.Components\JsonExtractor">
+      <UniqueIdentifier>{bae05c39-3a90-4160-9883-cc1453f7097a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Public\Engine_Defines.h">
@@ -435,6 +438,9 @@
     <ClInclude Include="..\Public\Picking.h">
       <Filter>01.Utility\21.Picking</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\JsonExtractor.h">
+      <Filter>01.Utility\04.Components\JsonExtractor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\private\Base.cpp">
@@ -634,6 +640,9 @@
     </ClCompile>
     <ClCompile Include="..\Private\Picking.cpp">
       <Filter>01.Utility\21.Picking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\JsonExtractor.cpp">
+      <Filter>01.Utility\04.Components\JsonExtractor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

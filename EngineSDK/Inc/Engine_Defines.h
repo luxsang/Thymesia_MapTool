@@ -27,6 +27,8 @@
 #include <assimp\Importer.hpp>
 #include <assimp\postprocess.h>
 
+#include <Json/json.hpp>
+
 
 #include "fmod.h"	
 #include "fmod.hpp"	
